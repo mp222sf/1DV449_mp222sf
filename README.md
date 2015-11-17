@@ -1,4 +1,5 @@
-# 1DV449_mp222sf
+# 1DV449
+## Reflektionsfrågor - Laboration 1
 
 #### Finns det några etiska aspekter vid webbskrapning. Kan du hitta något rättsfall?
 Börja med att kolla vad som sägs i robots.txt för att få information om vad som tillåts.
@@ -13,3 +14,6 @@ Försöka skicka så få förfrågningar till servern som möjligt. Vet man att 
 
 #### Vad kan robots.txt spela för roll?
 I robots.txt kan det finnas information om vad ägaren av sidan vill att man ska få tillgång till om man är icke-människa, vilket gäller för t.ex. Google-botar och andra sökmotorer. Sidor kanske inte vill att man ska skrapa från deras sidor. Det kan därför stå i robots.txt vad som inte är tillåtet att skrapa. Bryter man mot dessa regler finns risken för att man blir bannad.
+
+## Kuriosa
+* Fotbollslag: .... (lägg av) ;)
