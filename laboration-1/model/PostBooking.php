@@ -24,6 +24,7 @@ class PostBooking {
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_USERAGENT, "mattias.pavic@student.lnu.se");
 
 		$postStr = 'group1=' . $this->bookCode . '&username=zeke&password=coys&submit=login';
 
