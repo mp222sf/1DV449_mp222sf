@@ -50,13 +50,13 @@ Ett ganska stort problem med applikationens prestanda är att alla komponenter h
 För att förbättra applikationens prestanda ska man använda sig utav "cache". Första gången en användare laddar ner sidan så bör de tidigare nämnda komponenterna cache:as. När sedan sidan laddas om så behöver inte klienten skicka HTTP-förfråningar till servern angående dessa komponenter, vilket gör att responstiden blir kortare [1, s.22]. Viktigt när man ska använda sig av cache är att ange värden för Cache-Control och Expires [1, s.23]. 
 
 Förslag på filer som bör cache:as:
-•	jquery.js
-•	bootstrap.css
-•	signin.css
-•	Message.js
-•	MessageBoard.js
-•	b.jpg
-•	logo.png
+-	jquery.js
+-	bootstrap.css
+-	signin.css
+-	Message.js
+-	MessageBoard.js
+-	b.jpg
+-	logo.png
 
 
 ### Ingen GZIP-kompression
