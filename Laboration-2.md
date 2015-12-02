@@ -8,40 +8,40 @@ Datum: 2015-12-02
 ## Säkerhetsproblem
 
 ### Cross Site Scripting (XSS)
-Ett säkerhetsproblem som finns i applikationen är att vem som helst kan skicka med HTML-kod eller JavaScript-kod när man postar ett meddelande i applikationen. 
+Ett säkerhetsproblem som finns i applikationen är att vem som helst kan skicka med HTML-kod eller JavaScript-kod när de postar ett meddelande i applikationen. 
 
 Det kan leda till att någon lägger in skadlig JavaScript-kod på sidan som exekveras för alla som besöker den. Då kan bedragaren t.ex. få tillgång till andra användares cookies, sessions och annan känslig information [3].
 
-En lösning på problemet är att undvika alla form av HTML-innehåll när något skrivs in i t.ex. ett formulär. Ett annat sätt att lösa det på är att använda sig av en "white list" som bestämmer vad som ska få skrivas in. Den skall validera längd, tecken, formatet och affärsregler innan den accepterar data [4, s.9].
+En lösning på problemet är att t.ex. undvika all form av HTML-innehåll när något skrivs in i ett formulär. Ett annat sätt att lösa det på är att använda sig av en "white list" som bestämmer vad som ska få skrivas in. Den skall validera längd, tecken, formatet och affärsregler innan den accepterar data [4, s.9].
 
 
 ### Sensitive Data Exposure
-Ett problem är att applikationen inte använder sig av SSL på alla autentiserade sidor. En angripare kan då enkelt övervaka nätverkstrafiken och ta användares session cookies. Angriparen använder sedan denna cookie och tar över den oskyldiga användarens session. Detta leder till att angriparen kan få tillgång till användarens privata data [4]. 
+Ett problem är att applikationen inte använder sig av SSL på alla autentiserade sidor. En angripare kan då enkelt övervaka nätverkstrafiken och sno en användares session-cookie. Angriparen använder sedan denna cookie och tar över den oskyldiga användarens session. Detta leder till att angriparen får tillgång till användarens privata data [4]. 
 
 Den viktigaste åtgärd man ska göra vad det gäller detta problem är att använda sig av SSL [4]. 
-SSL står för Secure Sockets Layer och är en teknologi som skapar en krypterad länk mellan server och klient. Det tillåter därför känslig data så som kreditkortnummer, personnummer och inloggningsinformation att överföras säkert. [5]
+SSL står för Secure Sockets Layer och är en teknologi som skapar en krypterad länk mellan server och klient. Den tillåter därför känslig data såsom kreditkortnummer, personnummer och inloggningsinformation att överföras säkert. [5]
 
-Som användare kan man ta hjälp av HTTP Strict Transport Security (HSTS) som hjälper en webbläsare att endast kommunicera genom HTTPS, istället för HTTP. HSTS varnar när man angett en sida som använder sig av HTTP och försöker direkt ändra så att HTTPS används. [6]
+Som användare kan man ta hjälp av HTTP Strict Transport Security (HSTS) som hjälper en webbläsare att endast kommunicera genom HTTPS, istället för HTTP. HSTS varnar när man angett en sida som använder sig av HTTP och försöker direkt att ändra så att HTTPS används. [6]
 
 
 ### Cross Site Request Forgery
-Angripare kan ta över din session-cookie som är inloggad i applikationen och kan sedan skicka förfrågningar till applikationen via cookien. Dessa förfrågningar skickas från din webbläsare och servern som tar mot förfrågningarna tror att det är du, eftersom att det är din cookie. [4, s.14]
+Angripare kan ta över din session-cookie som är inloggad i applikationen och sedan skicka förfrågningar till applikationen via cookien. Dessa förfrågningar skickas från din webbläsare och servern som tar mot förfrågningarna tror att det är du, eftersom att det är din cookie. [4, s.14]
 
-Lösningen är att skicka med ett såkallat "token", som kan vara en slumpgenererad sträng, när inloggning sker. "Token:et" placeras i koden, exempelvis i ett formulär, och när sedan en post skicka så ska det skickas med. Detta gör att någon som inte har det unika "token:et" inte kan göra några postningar. [4, s.14]
+Lösningen är att skicka med ett såkallat "token", som kan vara en slumpgenererad sträng, när inloggning sker. "Token:et" placeras i koden, exempelvis i ett formulär, och när sedan en post görs så ska ett token skickas med. Detta gör att någon som inte har det unika "token:et" inte kan göra några postningar. [4, s.14]
 
 
 ### Data tillgängligt för allmänheten
-Sidan (http://localhost:3000/message/data) där alla meddelandena sparas kan kommas åt utan att vara inloggad. Detta gör att vem som helst får tillgång till meddelandena vilket inte är bra. Tanken med applikationen är att användare/konkurrenter som inte har inloggningsuppgifter inte ska ha tillgång till den. [4, s.13]
+Sidan (http://localhost:3000/message/data) där alla meddelandena sparas kan kommas åt utan att vara inloggad. Detta gör att vem som helst får tillgång till meddelandena, vilket inte är bra. Tanken med applikationen är att användare/konkurrenter som inte har inloggningsuppgifter inte ska ha tillgång till den informationen. [4, s.13]
 
-Följderna till detta problem blir ju att all hemlig data öppnas upp för allmänheten. För att lösa problemet måste man göra så att vem som helst inte får åtkomst till datan. Ett sätt kan vara att börja med att inte ge något åtkomst till sidorna i applikationen, för att sedan öppna upp det som ska vara tillgängligt. [4, s.13]
+Följderna till detta problem blir ju att all hemlig data öppnas upp för allmänheten. För att lösa problemet måste man göra så att vem som helst inte får åtkomst till datan. Ett sätt kan vara att börja med att inte ge någon åtkomst till sidorna i applikationen, för att sedan öppna upp det som ska vara tillgängligt. [4, s.13]
 
  
 ## Prestandaproblem
 
 ### Separata scripts och stylesheets
-Applikationen som testas byggs upp med flera script och stylesheets. Bara startsidan till applikationen innehåller fem stylesheets och fyra scripts som måste laddas in. Ju fler script och stylesheets som behövs och måste laddas ner, desto fler förfrågningar måste skickas. Varje förfrågning tar tid vilket gör att det tar lång tid att ladda ner en hel sida [1, s.16]. 
+Applikationen som testas byggs upp med flera scripts och stylesheets. Bara startsidan till applikationen innehåller fem stylesheets och fyra scripts som måste laddas in. Ju fler scripts och stylesheets som behövs och måste laddas ner, desto fler förfrågningar måste skickas. Varje förfrågning tar tid, vilket gör att det tar lång tid att ladda ner en hel sida [1, s.16]. 
 
-Lösningen är att slå ihop alla scripten till ett script och att göra likadant med alla stylesheets. Då behövs bara en förfrågan skickas för att kunna hämta scripten och en förfrågan för att hämta alla stylesheets. Det som är dåligt med den här lösningen är att det blir svårare för utvecklare att arbeta med. Det finns en anledning till att man delar upp kod i olika filer, främst för att separera delar som inte hör ihop varandra och även för att enklare förstå koden som är skriven [1, s.16].
+Lösningen är att slå ihop alla scripten till ett script och att göra likadant med alla stylesheets. Då behövs bara en förfrågan skickas för att kunna hämta scripten och en förfrågan för att hämta alla stylesheets. Det som är dåligt med den här lösningen är att det blir svårare för utvecklare att underhålla. Det finns en anledning till att man delar upp kod i olika filer, främst för att separera delar som inte hör ihop varandra och även för att enklare förstå koden som är skriven [1, s.16].
 
 
 ### Kort eller ingen "Expires-time"
@@ -88,7 +88,7 @@ Om man använder sig av både JSMin och Gzip kompression, som jag skrev om tidig
  
 ## Egna reflektioner
 
-Regel 8 i kurslitteraturen som säger att man bör göra Javascript och CSS extern har jag valt att inte använda mig av. Detta är för att jag inte ser fördelen med det i den här applikationen. En vanlig användare använder sig bara av en sida, som i stort sett aldrig laddas om. Hade däremot sidan laddats om ofta eller att det funnit andra sidor att vandra mellan så hade detta varit en fördel. Externt Javascript- och CSS-kod kan cachas, vilket gör att man slipper läsa in allt om och om igen.
+Regel 8 i kurslitteraturen som säger att man bör göra Javascript och CSS extern har jag valt att inte använda mig av. Detta är för att jag inte ser fördelen med det i den här applikationen. En vanlig användare använder sig bara av en sida, som i stort sett aldrig laddas om. Hade däremot sidan laddats om ofta eller att det funnits andra sidor att vandra mellan så hade detta varit en fördel. Externt Javascript- och CSS-kod kan cachas, vilket gör att man slipper läsa in allt om och om igen.
 
 
  
