@@ -1,5 +1,9 @@
 # Rapport Laboration 2
-Mattias Pavic (mp222sf) 2015-12-03
+Namn: Mattias Pavic
+
+LNU-namn: mp222sf
+
+Datum: 2015-12-02
 
 ## Säkerhetsproblem
 
