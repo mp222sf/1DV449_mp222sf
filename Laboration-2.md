@@ -1,9 +1,5 @@
 # Rapport Laboration 2
-Mattias Pavic
-
-mp222sf
-
-2015-12-03
+Mattias Pavic (mp222sf) 2015-12-03
 
 ## Säkerhetsproblem
 
