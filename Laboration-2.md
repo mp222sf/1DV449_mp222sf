@@ -1,4 +1,4 @@
-# Rapport Laboration 2
+# Laboration 2
 Namn: Mattias Pavic
 
 LNU-namn: mp222sf
