@@ -35,6 +35,12 @@ Sidan (http://localhost:3000/message/data) där alla meddelandena sparas kan kom
 
 Följderna till detta problem blir ju att all hemlig data öppnas upp för allmänheten. För att lösa problemet måste man göra så att vem som helst inte får åtkomst till datan. Ett sätt kan vara att börja med att inte ge någon åtkomst till sidorna i applikationen, för att sedan öppna upp det som ska vara tillgängligt. [4, s.13]
 
+
+### Utloggning fungerar inte
+Ett problem med applikationen är att det inte riktigt går att logga ut. Klickar man på utloggningsknappen till höger så kommer man till inloggningssidan. Går man sedan tillbaka till sidan där meddelandena presenteras så går det att komma in där. Det går inte att posta några inlägg, men alla meddelandena visas. 
+
+Lösningen är att döda sessionen när en användare klickar på "log out". Det kan man göra på olika sätt. Om man använder sig av PHP finns det en inbyggd funktion som heter "session_destroy()". Det den funktionen gör är att den förstör alla sessioner som finns för den servern. Nästa gång någon försöker använda sig av applikationen på samma dator kommer den tvingas logga in och inte ha tillgång till meddelandena. [7]
+
  
 ## Prestandaproblem
 
@@ -101,6 +107,8 @@ Regel 8 i kurslitteraturen som säger att man bör göra Javascript och CSS exte
 
 [4] OWASP, "OWASP Top 10 - 2013: The Ten Most Critical Web Application Security Risks", OWASP, okänt [Online] Tillgänglig: http://owasptop10.googlecode.com/files/OWASP%20Top%2010%20-%202013.pdf. [Hämtad: 30 november, 2015]
 
-[5] DigiCert, "What Is SSL (Secure Sockets Layer) and What Are SSL Certificates?", DigiCert, okänt [Online] Tillgänglig: https://www.digicert.com/ssl.htm [Hämtad: 2 december, 2015]
+[5] DigiCert, "What Is SSL (Secure Sockets Layer) and What Are SSL Certificates?", DigiCert, okänt [Online] Tillgänglig: https://www.digicert.com/ssl.htm [Hämtad: 2 december, 2015].
 
-[6] John Whitlock, "HTTP Strict Transport Security", Mozilla Developer Network, 28 oktober 2015 [Online] Tillgänglig: https://developer.mozilla.org/en-US/docs/Web/Security/HTTP_strict_transport_security [Hämtad: 2 december, 2015]
+[6] John Whitlock, "HTTP Strict Transport Security", Mozilla Developer Network, 28 oktober 2015 [Online] Tillgänglig: https://developer.mozilla.org/en-US/docs/Web/Security/HTTP_strict_transport_security [Hämtad: 2 december, 2015].
+
+[7] Home and Learn, "PHP Log out", Home and Learn, okänt [Online] Tillgänglig: http://www.homeandlearn.co.uk/php/php14p4.html. [Hämtad: 3 december, 2015].
