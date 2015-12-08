@@ -18,4 +18,4 @@ Jag har valt att cacha mitt data var femte minut. Tycker det är fel att cacha d
 
 
 ## Körbar applikation
-http://pavic10.byethost17.com
+http://pavic10.byethost17.com/projects/1dv449-laboration-3/index.php
