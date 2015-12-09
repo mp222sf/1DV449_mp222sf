@@ -1,0 +1,37 @@
+body { 
+	height: 95%;
+	width: 95%; 
+	padding: 20px; 
+	font-family: 'Century Gothic';
+	background-image: url("pics/trafficBackground.png");
+    background-size: cover;
+}
+
+#containerLeft, #containerRight {
+	width: 50%;
+	height: 100%;
+	float: left;
+}
+
+#map { 
+	height: 400px; 
+	width: 600px;
+	border-radius: 20px;
+	border: 1px solid gray;
+}
+
+p {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	font-size: 16px;
+}
+
+p:hover {
+	color: gray;
+	cursor: pointer;
+}
+
+a {
+	font-size: 12px;
+}
