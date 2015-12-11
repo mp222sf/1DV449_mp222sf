@@ -20,4 +20,4 @@ I robots.txt kan det finnas information om vad ägaren av sidan vill att man ska
 * Fotbollslag: .... lägg av ;)
 
 ## Körbar applikation
-http://pavic10.byethost17.com
+http://pavic10.byethost17.com/projects/1dv449-laboration-1/
