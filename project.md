@@ -6,5 +6,6 @@ Min applikation kommer att vara som en typ av "tågcentral" där man kommer att 
 När man hittat den station som man eftersöker så kommer avgångar/ankomster presenteras och även se hur vädret ser ut på just denna station.
 
 ## API:er
-- http://tagtider.net/api/#get-stations
-- http://wiki.temperatur.nu/index.php/API
+- Tågtider (http://tagtider.net/api/#get-stations)
+- Temperatur (http://wiki.temperatur.nu/index.php/API)
+- Google Maps (https://developers.google.com/maps/documentation/javascript/tutorial)
