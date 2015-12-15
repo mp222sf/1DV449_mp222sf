@@ -7,6 +7,6 @@ När man hittat den station som man eftersöker så kommer avgångar/ankomster p
 Ev. kommer jag också att lägga till sökning efter stationer via Google Maps. Detta prioriteras inte, men finns tid över kommer detta implementeras.
 
 ## API:er
-- Tågtider (http://tagtider.net/api/#get-stations)
+- Tågtider (http://tagtider.net/api)
 - Temperatur (http://wiki.temperatur.nu/index.php/API)
 - Google Maps (https://developers.google.com/maps/documentation/javascript/tutorial)
