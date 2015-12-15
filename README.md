@@ -4,4 +4,4 @@
 - [Laboration 1](Laboration-1.md) | [Kod](laboration-1) 
 - [Laboration 2](Laboration-2.md) 
 - [Laboration 3](Laboration-3.md)  | [Kod](laboration-3) 
-- [Projekt](project.md)
+- [Projekt](Project-description.md)
