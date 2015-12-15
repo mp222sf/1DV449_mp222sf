@@ -12,4 +12,4 @@ Ev. kommer jag också att lägga till sökning efter stationer via Google Maps. 
 - Google Maps (https://developers.google.com/maps/documentation/javascript/tutorial)
 
 ## Körbar applikation
-_ Ej klar.
+*Ej klar.*
