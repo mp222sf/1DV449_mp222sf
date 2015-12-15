@@ -33,5 +33,18 @@ p:hover {
 }
 
 a {
-	font-size: 12px;
+	font-size: 18px;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.textMargin {
+	margin-right: 15px;
+}
+
+.active {
+	color: red;
 }

@@ -17,8 +17,16 @@ class TraficMessage {
 	{
 		$this->id = $obj["id"];
 		$this->priority = $obj["priority"];
-		$date = substr($obj["createddate"], 6, 10);
-		$this->createddate = new DateTime("@$date"); 
+
+		$str = $obj["createddate"];
+		$match = preg_match('/\/Date\((\d+)([-+])(\d+)\)\//', $str, $date2);
+		$timestamp = $date2[1]/1000;
+		$operator = $date2[2];
+		$hours = $date2[3]*36; // Get the seconds
+		$datetime = new DateTime();
+		$datetime->setTimestamp($timestamp);
+		$this->createddate = $datetime;
+
 		$this->title = $obj["title"];
 		$this->exactlocation = $obj["exactlocation"];
 		$this->description = $obj["description"];

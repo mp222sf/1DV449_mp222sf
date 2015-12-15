@@ -13,7 +13,7 @@ class GetTraficMessages {
 			$jsonObj = unserialize(file_get_contents('cache.txt'));
 		}
 		else {
-			$jsonObj = json_decode(file_get_contents('http://api.sr.se/api/v2/traffic/messages?format=json'), true);
+			$jsonObj = json_decode(file_get_contents('http://api.sr.se/api/v2/traffic/messages?format=json&pagination=false&sort=createddate&indent=true'), true);
 
 			if (count($jsonObj["messages"]) > 0)
 			{

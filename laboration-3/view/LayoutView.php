@@ -7,13 +7,13 @@ class LayoutView {
 				<html>
 				<head>
 					<meta charset="utf-8">
-					<title>Laboration 3</title>
-					<link rel="stylesheet" type="text/css" href="view/style.css">
+					<title>1DV449 - Laboration 3</title>
+					<link rel="stylesheet" type="text/css" href="view/style.css?v1.0.0">
 				</head>
 				<body>
 
-					<h1>Laboration 3</h1>
-					<a href="index.php?cat=0">Vägtrafik</a> - <a href="index.php?cat=1">Kollektivtrafik</a> - <a href="index.php?cat=2">Planerad störning</a> - <a href="index.php?cat=3">Övrigt</a> - <a href="index.php">Alla kategorier</a>
+					<h1>1DV449 - Laboration 3</h1>
+					<a href="index.php?cat=0" class="textMargin">Vägtrafik</a><a href="index.php?cat=1" class="textMargin">Kollektivtrafik</a><a href="index.php?cat=2" class="textMargin">Planerad störning</a><a href="index.php?cat=3" class="textMargin">Övrigt</a><a href="index.php">Alla kategorier</a>
 					<div id="container">
 					 	<div id="containerLeft">
 							' . 
@@ -25,6 +25,12 @@ class LayoutView {
 						 	<div id="map">
 						 		
 						 	</div>
+						 	<h3>Prioriteringar</h3>
+						 	<img src="http://maps.google.com/mapfiles/ms/icons/red-dot.png" title="Mycket allvarlig händelse" alt="Mycket allvarlig händelse" />
+						 	<img src="http://maps.google.com/mapfiles/ms/icons/orange-dot.png" title="Stor händelse" alt="Stor händelse" />
+						 	<img src="http://maps.google.com/mapfiles/ms/icons/yellow-dot.png" title="Störning" alt="Störning" />
+						 	<img src="http://maps.google.com/mapfiles/ms/icons/blue-dot.png" title="Mindre störning" alt="Mindre störning" />
+						 	<img src="http://maps.google.com/mapfiles/ms/icons/green-dot.png" title="Information" alt="Information" />
 						 </div>
 					</div>
 					
@@ -77,13 +83,18 @@ class LayoutView {
 					marker' . $t->getId() . '.addListener("click", function() {
 					    var test = window.open("", "TraficMessageInformation", "width=500, height=300");
 					    test.document.body.innerHTML = "";
-					    test.document.write("<h1>' . $t->getTitle() . '</h1><p><b>Datum:</b> ' . $t->getCreatedDate()->format('Y-m-d H:i') . '</p><p><b>Beskrivning:</b> ' . $t->getDescription() . '</p><p><b>Kategori:</b> ' . $this->getCategoryName($t->getCategory()) . '</p><p><b>Prioritet:</b> ' . $this->getPriorityName($t->getPriority()) . '</p>");
+					    test.document.write("<h1>' . $t->getTitle() . '</h1><p><b>Datum:</b> ' . $t->getCreatedDate()->format('Y-m-d H:i') . '</p><p><b>Beskrivning:</b> ' . $this->removeEmptyEndChar($t->getDescription()) . '</p><p><b>Kategori:</b> ' . $this->getCategoryName($t->getCategory()) . '</p><p><b>Prioritet:</b> ' . $this->getPriorityName($t->getPriority()) . '</p>");
 					  });
 
 					document.getElementById("message' . $t->getId() . '").addEventListener("click", function(){
 					    if (marker' . $t->getId() . '.getAnimation() !== null) {
 						    marker' . $t->getId() . '.setAnimation(null);
 						} else {
+							' . $this->removeBounceFromAllMarkers($trafic) . '
+							' . $this->removeActiveFromAllMessages($trafic) . '
+							document.getElementById("message' . $t->getId() . '").className = "active";
+							map.setZoom(6);
+    						map.setCenter(marker' . $t->getId() . '.getPosition());
 					    	marker' . $t->getId() . '.setAnimation(google.maps.Animation.BOUNCE);
 						}
 					});
@@ -110,6 +121,39 @@ class LayoutView {
 				<script async defer
 				  src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBEVs3ATKsLGIejp2WDgZHGcjOg7C4UuhA&callback=initMap'>
 				</script>";
+	}
+
+	private function removeBounceFromAllMarkers($trafic)
+	{
+		$returnString = "";
+		foreach ($trafic as $t) {
+			$returnString .= 'marker' . $t->getId() . '.setAnimation(null);';
+		}
+
+		return $returnString;
+	}
+
+	private function removeEmptyEndChar($description)
+	{
+		$toReturn = $description;
+		if (substr($toReturn, count($toReturn) - 1, 1) == " ")
+		{
+			$toReturn = substr($toReturn, 0, count($toReturn) -2);
+		}
+		
+		$toReturn = str_replace(array("\n"), '', $toReturn);
+
+		return $toReturn;
+	}
+
+	private function removeActiveFromAllMessages($trafic)
+	{
+		$returnString = "";
+		foreach ($trafic as $t) {
+			$returnString .= 'document.getElementById("message' . $t->getId() . '").className = "";';
+		}
+
+		return $returnString;
 	}
 
 	private function getCategoryName($id)
