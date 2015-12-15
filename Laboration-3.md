@@ -13,10 +13,15 @@ Jag har valt att cacha mitt data var femte minut. Tycker det är fel att cacha d
 
 
 ### Hur har du tänkt kring säkerheten i din applikation?
-
+- Försökt ta bort möjligheten till XSS.
+- Har velat använda HTTPS, dock inte haft möjlighet till det.
+- Querystringen för kategori i URL:en tar endast tal mellan 0 och 3. Om inte detta uppfylls så returneras standardkategorin (Alla kategorier).
 
 ### Hur har du tänkt kring optimeringen i din applikation?
-
+- Försökt ha få CSS- och Scriptfiler.
+- Cachat filer som inte kommer ändras så ofta.
+- Lagt CSS-filerna tidigt i koden.
+- Lagt Script-filerna längst ner i koden.
 
 ## Körbar applikation
 http://pavic10.byethost17.com/projects/1dv449-laboration-3/index.php
