@@ -10,12 +10,14 @@ I Google Maps API är man tvugen att använda sig utav en "API key" för att kun
 Jag har valt att cacha mitt data var femte minut. Tycker det är fel att cacha det längre än så här med tanke på att användarna hela tiden ska få vara uppdaterade. Det är klart att man tjänar på att ha längre cachningstid då det blir färre förfrågningar mot API:et, men tyvärr anser jag att det inte är möjligt att ha det längre i en sådan här applikation. Maximalt kan det bli 288 förfrågningar på en dag vilket ändå får ses som bra.
 
 ### Vad finns det för risker kring säkerhet och stabilitet i din applikation?
-
+- Vem som helst kan få tillgång till min API-nyckel.
+- 
 
 ### Hur har du tänkt kring säkerheten i din applikation?
 - Försökt ta bort möjligheten till XSS.
 - Har velat använda HTTPS, dock inte haft möjlighet till det.
 - Querystringen för kategori i URL:en tar endast tal mellan 0 och 3. Om inte detta uppfylls så returneras standardkategorin (Alla kategorier).
+- API-keyn för Google Maps är synlig. Har inte hittat något sätt att dölja den.
 
 ### Hur har du tänkt kring optimeringen i din applikation?
 - Försökt ha få CSS- och Scriptfiler.
