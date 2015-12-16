@@ -11,6 +11,7 @@ Jag har valt att cacha mitt data var femte minut. Tycker det är fel att cacha d
 
 ### Vad finns det för risker kring säkerhet och stabilitet i din applikation?
 - Vem som helst kan få tillgång till min API-nyckel.
+- Går något av API:erna ner så fungerar inte applikationen fullt ut.
 
 ### Hur har du tänkt kring säkerheten i din applikation?
 - Försökt ta bort möjligheten till XSS.
