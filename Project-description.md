@@ -8,7 +8,7 @@ Ev. kommer jag också att lägga till sökning efter stationer via Google Maps. 
 
 ## API:er
 - Tågtider (http://tagtider.net/api)
-- Temperatur (http://wiki.temperatur.nu/index.php/API)
+- Temperatur (http://openweathermap.org/api)
 - Google Maps (https://developers.google.com/maps/documentation/javascript/tutorial)
 
 ## Körbar applikation
