@@ -15,6 +15,7 @@ Jag har använt mig av PHP när jag skapat applikationen. Känner mig trygg med 
 ![Bild 2](bild3.png)
 *Användaren väljer ett alternativ och får upp tågstationens avgångar, vädret och en karta.*
 
+
 ### Säkerhet och prestandaoptimering
 Vad det gäller säkerhet så har jag försökt göra applikationen så stabil och säker som möjligt. Jag har först och främst gått igenom OWASPs lista med vanliga säkerhetshål. Jag har bland annat gjort så att det inte går att göra XSS-attacker på applikationen. Det ska inte gå att skicka in skadlig kod, för att få tillgång till t.ex. användares cookies, sessioner och annan viktig data.
 
@@ -30,6 +31,7 @@ Lite samma sak är det med script, fast tvärtom. Alla script har jag lagt i slu
 
 Cacha filer.
 
+
 ### Offline-first
 Jag har försökt göra applikationen till en bra offline-applikation. Tanken från början var att kunna använda Javascript när jag läste in från API:erna. Tyvärr lyckades jag inte lösa det när jag försökte läsa in från Tågtiders API. Därför kunde jag inte heller spara API:ets information på klienten och då inte kunde ta del av den informationen när användaren inte var uppkopplad. 
 
@@ -42,5 +44,6 @@ I en sådan här applikation så kanske ett offline-läge inte är så viktigt. 
 
 ### Risker
 Sensitive Data Exposure (HTTPS)
+
 
 ### Egna reflektioner
