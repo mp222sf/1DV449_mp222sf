@@ -23,7 +23,6 @@ Lite samma sak är det med script, fast tvärtom. Alla script har jag lagt i slu
 
 Cacha filer
 
-
 ### Offline-first
 Jag har försökt göra applikationen till en bra offline-applikation. Tanken från början var att kunna använda Javascript när jag läste in från API:erna. Tyvärr lyckades jag inte lösa det när jag försökte läsa in från Tågtiders API. Därför kunde jag inte heller spara API:ets information på klienten och då inte kunde ta del av den informationen när användaren inte var uppkopplad. 
 
@@ -34,9 +33,7 @@ Kartan från Google Maps är också skapad som så att den sparar lite informati
 I en sådan här applikation så kanske ett offline-läge inte är så viktigt. Det är inte ofta du stannar på sidan under en längre tid. Oftast går du in och gör max en till tre sökningar på platser som man vill ha information om. Självklart blir det en bättre upplevelse om sidan inte kraschar utan uppkoppling.
 
 
-
 ### Risker
 Sensitive Data Exposure (HTTPS)
-
 
 ### Egna reflektioner
