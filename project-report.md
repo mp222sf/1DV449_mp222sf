@@ -11,7 +11,7 @@ Jag har använt mig av PHP när jag skapat applikationen. Känner mig trygg med 
 ### Säkerhet och prestandaoptimering
 Vad det gäller säkerhet så har jag försökt göra applikationen så stabil och säker som möjligt. Jag har först och främst gått igenom OWASPs lista med vanliga säkerhetshål. Jag har bland annat gjort så att det inte går att göra XSS-attacker på applikationen. Det ska inte gå att skicka in skadlig kod, för att få tillgång till t.ex. användares cookies, sessioner och annan viktig data.
 
-Jag har även försökt förhindra Cross Site Request Forgery-attacker. Där handlar det om samma sak, att jag har validerat all inläst data från sökboxen. Det ska inte gå att skicka in olika taggar, ex. <script>, vilket gör att det inte ska gå att gör dessa attacker.
+Jag har även försökt förhindra Cross Site Request Forgery-attacker. Där handlar det om samma sak, att jag har validerat all inläst data från sökboxen. Det ska inte gå att skicka in olika taggar, ex. script, vilket gör att det inte ska gå att gör dessa attacker.
 
 Något jag kunde förbättrat med säkerheten är att det inte ska gå att få tag i vissa cache-filer som finns på servern. Jag tycker säkerheten är lagom bra, då det inte går att få tag i länkarna i källkoden till dessa filer. Men får läcker dessa länkar ut så är det enkelt att ladda ner filerna. Visserligen innehåller filerna bara cachad information från API:erna.
 
@@ -21,7 +21,7 @@ Jag har valt att ha min ena stylesheet-fil i början av koden, i ”Head-taggen�
 
 Lite samma sak är det med script, fast tvärtom. Alla script har jag lagt i slutet av koden. När ett script laddas in så kan inget annat laddas in samtidigt. Så om jag lägger mina scripts i mitten utav koden så kommer sidan utvecklas i en hackig takt. När jag lägger dem i slutet så har alla element laddats in och det kommer knappt synas att scripten laddas in därefter.
 
-Cacha filer
+Cacha filer.
 
 ### Offline-first
 Jag har försökt göra applikationen till en bra offline-applikation. Tanken från början var att kunna använda Javascript när jag läste in från API:erna. Tyvärr lyckades jag inte lösa det när jag försökte läsa in från Tågtiders API. Därför kunde jag inte heller spara API:ets information på klienten och då inte kunde ta del av den informationen när användaren inte var uppkopplad. 
