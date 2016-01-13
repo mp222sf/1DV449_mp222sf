@@ -1,0 +1,127 @@
+body { 
+	height: 95%;
+	width: 95%; 
+	padding: 20px; 
+	font-family: 'Century Gothic';
+	background-color: #e5eeff;
+}
+
+h1 {
+	text-align: center;
+}
+
+#containerLeft, #containerRight {
+	width: 50%;
+	height: 100%;
+	float: left;
+}
+
+#containerCenter {
+	width: 870px;
+	text-align: left;
+	display: block;
+	margin: auto;
+}
+
+#searchInp {
+	font-family: 'Century Gothic';
+	width: 800px;
+	height: 40px;
+	font-size: 24px;
+	border-radius: 10px;
+
+}
+
+#searchBox {
+	text-align: center;
+}
+
+#map { 
+	height: 400px; 
+	width: 600px;
+	border-radius: 20px;
+	border: 1px solid gray;
+	margin-top: 30px;
+}
+
+#logoPic {
+	width: 40%;
+	margin: auto;
+	display: inherit;
+}
+
+p {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	font-size: 16px;
+}
+
+.stationText:hover {
+	color: gray;
+	cursor: pointer;
+}
+
+a {
+	font-size: 18px;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.textMargin {
+	margin-right: 15px;
+}
+
+.active {
+	color: red;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.marginCenter {
+	margin: auto;
+}
+
+.searchText {
+	width: 870px;
+	margin: auto;
+}
+
+.submit-button {
+	height: 42px;
+	margin: 0px;
+    margin-left: 5px;
+    border-radius: 5px;  
+    padding: 0px 15px 0px 15px;
+    font-size: 20px;
+    font-family: 'Century Gothic';
+}
+
+.transTrain {
+	display: inline-block;
+	width: 10%;
+}
+
+.transDest {
+	display: inline-block;
+	width: 75%;
+}
+
+.transDep {
+	display: inline-block;
+	width: 10%;
+}
+
+.blink_me {
+  animation: blinker 3s linear infinite;
+  color: red;
+}
+
+@keyframes blinker {  
+  50% { opacity: 0.0; }
+}
