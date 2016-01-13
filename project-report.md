@@ -6,9 +6,9 @@ Jag har skapat en applikation som är till för tågresenärer. De kan innan sin
 
 Jag har använt mig av PHP när jag skapat applikationen. Känner mig trygg med språket och jag kände att jag enklast kunde skapa min applikation med det. Jag har följt MVC och även använt mig av Javascript till bland annat "Offline-first" och Google Maps.
 
-![Bild 1](http://pavic10.byethost17.com/bild1.png)
-![Bild 2](http://pavic10.byethost17.com/bild2.png)
-![Bild 2](http://pavic10.byethost17.com/bild3.png)
+![Bild 1](bild1.png)
+![Bild 2](bild2.png)
+![Bild 2](bild3.png)
 
 ### Säkerhet och prestandaoptimering
 Vad det gäller säkerhet så har jag försökt göra applikationen så stabil och säker som möjligt. Jag har först och främst gått igenom OWASPs lista med vanliga säkerhetshål. Jag har bland annat gjort så att det inte går att göra XSS-attacker på applikationen. Det ska inte gå att skicka in skadlig kod, för att få tillgång till t.ex. användares cookies, sessioner och annan viktig data.
