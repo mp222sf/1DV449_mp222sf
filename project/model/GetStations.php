@@ -6,7 +6,8 @@ require_once("model/Transfer.php");
 class GetStations {
 
 	private $stations = array();
-	private $foundStations = null;
+	private $foundStations = array();
+	private $validSearch = false;
 	private $jsonStations;
 	
 	public function __construct()
@@ -68,16 +69,15 @@ class GetStations {
 	// Returnerar en array med Station-objekt.
 	public function findStation($searchWord)
 	{
-		$this->foundStations = null;
-		if (count($this->stations) > 0)
+		if (count($this->stations) > 0 && $this->validation($searchWord))
 		{
-			$this->foundStations = array();
-
 			foreach ($this->stations as $stat) {
 				if (preg_match("/" . $searchWord . "/i", $stat->getName())) {
 				    array_push($this->foundStations, $stat);
 				}
 			}
+
+			$this->validSearch = true;
 		}
 	}
 
@@ -130,6 +130,20 @@ class GetStations {
 		}
 
 		return $dataArray;
+	}
+
+	private function validation($searchWord)
+	{
+		if(preg_match("/^[a-zA-Z0-9éÉüÜåÅäÄöÖ.,-\s]+$/", $searchWord)) {
+		    return true;
+		} else {
+		    return false;
+		}
+	}
+
+	public function getValidSearch()
+	{
+		return $this->validSearch;
 	}
 
 	// Returnerar alla stationer.

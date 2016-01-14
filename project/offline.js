@@ -5,8 +5,6 @@ var allStations = document.getElementsByClassName("stationLink");
 var connParagraph = document.getElementById("info");
 var connInterval;
 
-console.log(allStations);
-
 searchButton.addEventListener("click", function(){
 
 	if (doesConnectionExist())

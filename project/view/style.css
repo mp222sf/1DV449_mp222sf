@@ -50,6 +50,23 @@ h1 {
 	display: inherit;
 }
 
+#weather {
+	position:relative;
+	width: 100%;
+}
+
+#temp {
+	display: inline-block;
+	font-size: 60px;
+	text-align: center;
+	left:50%;
+	margin-left:-10px;
+}
+
+#tempMin, #tempMax {
+	margin: 10px;
+}
+
 p {
 	margin: 0px;
 	padding: 0px;
@@ -117,6 +134,30 @@ a:hover {
 	width: 10%;
 }
 
+.weatherIconPic {
+	width: 20%;
+	margin-right: 30px;
+	display: inline-block;
+}
+
+.weatherTempMain {
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	margin-top: -25px;
+}
+
+.weatherTempOther {
+	display: inline-block;
+	text-align: center;
+	margin-left: 30px;
+}
+
+.pSmallInlineBlock {
+	display: inline-block;
+	font-size: 10px;
+}
+
 .blink_me {
   animation: blinker 3s linear infinite;
   color: red;
@@ -124,4 +165,12 @@ a:hover {
 
 @keyframes blinker {  
   50% { opacity: 0.0; }
+}
+
+.colorBlue {
+	color: blue;
+}
+
+.colorRed {
+	color: red;
 }

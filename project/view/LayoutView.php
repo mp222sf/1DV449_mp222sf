@@ -4,6 +4,13 @@ class LayoutView {
 
 	private static $searchButton = "searchButt";
 	private static $searchInput = "searchInp";
+	private static $qsID = "id";
+	private static $qsSearch = "search";
+
+	public function __construct()
+	{
+		// Empty.
+	}
 
 	public function render($stationsObj, $weatherObj) {
 
@@ -27,8 +34,12 @@ class LayoutView {
 						<div id="container">
 						 	' . $this->choosenStation($stationsObj, $weatherObj) . '
 						</div>
-						' . $this->googleMaps($stationsObj) . '
+					
 					</body>
+					<script src="GoogleMaps.js"></script>
+					<script async defer
+					  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEVs3ATKsLGIejp2WDgZHGcjOg7C4UuhA&callback=initMap">
+					</script>
 					<script src="offline.js"></script>
 				</html>
 		';
@@ -51,7 +62,8 @@ class LayoutView {
 	private function choosenStation($stationsObj, $weatherObj)
 	{
 		try {
-			if ($stationsObj->getFoundStations() == null && $this->getQSSearch() != null)
+			
+			if (!$stationsObj->getValidSearch() && $this->getQSSearch() != null)
 			{
 				return '<div id="containerCenter">
 			 				<h2>Fel</h2>
@@ -65,7 +77,7 @@ class LayoutView {
 				 			<p class="stationText">' . $this->stationSearch($stationsObj->getFoundStations()) . '</p>
 				 		</div>';
 			}
-			if (is_array($stationsObj->getFoundStations()))
+			if (is_array($stationsObj->getFoundStations()) && $this->getQSSearch() != null)
 			{
 				return '<div id="containerCenter">
 				 			<h2>Sökresultat</h2>
@@ -83,19 +95,28 @@ class LayoutView {
 
 				return '<div id="containerLeft">
 			 			<h2>Tågstation: ' . $station->getName() . '</h2>
-			 			' . $this->viewTransfers($stationsObj->getTransfersByStationID($this->getQSId())) . '
+			 			' . $this->getTransfers($stationsObj->getTransfersByStationID($this->getQSId())) . '
+			 			<div>
+			 				<p class="pSmallInlineBlock">Tågstationskoordinater: (</p>
+			 				<p id="latTS" class="pSmallInlineBlock">' . $station->getLat() . '</p>
+			 				<p class="pSmallInlineBlock"> / </p>
+			 				<p id="lngTS" class="pSmallInlineBlock">' . $station->getLng() . '</p>
+			 				<p class="pSmallInlineBlock">)</p>
+			 			</div>
 				 	</div>
 				 	<div id="containerRight">
-				 		<div>
+				 		<div id="weather">
 				 			<h2>Vädercentral: ' . $weatherObj->getWeather()->getName() . '</h2>
-				 			<img src="view/pics/weatherIcons/' . $weatherObj->getWeather()->getIcon() . '.png" title="' . $weatherObj->getWeather()->getDescription() . '" /><br>
-				 			Temp: ' . $weatherObj->getWeather()->getTemp() . '<br>
-				 			Temp-Min: ' . $weatherObj->getWeather()->getTempMin() . '<br>
-				 			Temp-Max: ' . $weatherObj->getWeather()->getTempMax() . '<br>	
+				 			<img src="view/pics/weatherIcons/' . $weatherObj->getWeather()->getIcon() . '.png" class="weatherIconPic" title="' . $weatherObj->getWeather()->getDescription() . '" />
+				 			<div class="weatherTempMain">
+								<p id="temp" class="' . $this->getTempColor($weatherObj->getWeather()->getTemp()) . '">' . $weatherObj->getWeather()->getTemp() . '</p>
+								<div class="weatherTempOther">
+					 				<p id="tempMin" title="Lägsta temperatur: ' . $weatherObj->getWeather()->getTempMin() . '">' . $weatherObj->getWeather()->getTempMin() . '</p>
+					 				<p id="tempMax" title="Högsta temperatur: ' . $weatherObj->getWeather()->getTempMax() . '">' . $weatherObj->getWeather()->getTempMax() . '</p>
+					 			</div>
+				 			</div>
 				 		</div>
-						<div id="map">
-
-						</div>
+						<div id="map"></div>
 					</div>';
 			}
 
@@ -121,7 +142,7 @@ class LayoutView {
 		}
 	}
 
-	private function viewTransfers($transfers)
+	private function getTransfers($transfers)
 	{
 		$retString = '<div class="transTrain bold">Tåg</div><div class="transDest bold">Destinationer</div><div class="transDep bold marginCenter">Avgång</div><br>';
 
@@ -146,60 +167,71 @@ class LayoutView {
 		return $retString;
 	}
 
-	// Aktiverar Google-maps med en markör som har samma kordinater som stationen.
-	private function googleMaps($statObj)
+	private function getTempColor($temp)
 	{
-		$markers = "";
-
-		if ($this->getQSId() != null && is_numeric($this->getQSId()))
+		if ($temp > 0.0)
 		{
-			$stat = $statObj->getStationById($this->getQSId());
-
-			$markers .= 'var markerPos = new google.maps.Marker({
-				      position: {lat: ' . $stat->getLat() . ', lng: ' . $stat->getLng() . '},
-				      map: map,
-				      animation: google.maps.Animation.DROP,
-				      icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
-				    });
-					';
+			return "colorRed";
 		}
-
-		return "<script type='text/javascript'>
-
-				  var map;
-				  function initMap() {
-				    var myLatLng = {lat: 62.440670, lng: 17.367777};
-
-				    map = new google.maps.Map(document.getElementById('map'), {
-				      center: myLatLng,
-				      zoom: 4
-				    });
-
-					" . $markers . "
-				  }
-
-				</script>
-				<script async defer
-				  src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBEVs3ATKsLGIejp2WDgZHGcjOg7C4UuhA&callback=initMap'>
-				</script>";
+		return "colorBlue";
 	}
 
+	// // Aktiverar Google-maps med en markör som har samma kordinater som stationen.
+	// private function googleMaps($statObj)
+	// {
+	// 	$markers = "";
+
+	// 	if ($this->getQSId() != null && is_numeric($this->getQSId()))
+	// 	{
+	// 		$stat = $statObj->getStationById($this->getQSId());
+
+	// 		$markers .= 'var markerPos = new google.maps.Marker({
+	// 			      position: {lat: ' . $stat->getLat() . ', lng: ' . $stat->getLng() . '},
+	// 			      map: map,
+	// 			      animation: google.maps.Animation.DROP,
+	// 			      icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+	// 			    });
+	// 				';
+	// 	}
+
+	// 	return "<script type='text/javascript'>
+
+	// 			  var map;
+	// 			  function initMap() {
+	// 			    var myLatLng = {lat: 62.440670, lng: 17.367777};
+
+	// 			    map = new google.maps.Map(document.getElementById('map'), {
+	// 			      center: myLatLng,
+	// 			      zoom: 4
+	// 			    });
+
+	// 				" . $markers . "
+	// 			  }
+
+	// 			</script>
+	// 			<script async defer
+	// 			  src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBEVs3ATKsLGIejp2WDgZHGcjOg7C4UuhA&callback=initMap'>
+	// 			</script>";
+	// }
+
+
+
 	// Hämtar Querystring :: "id".
-	private function getQSId()
+	public function getQSId()
 	{
-		if (isset($_GET["id"]))
+		if (isset($_GET[self::$qsID]))
 		{
-			return $_GET["id"];
+			return $_GET[self::$qsID];
 		}
 		return null;
 	}
 
 	// Hämtar Querystring för "search".
-	private function getQSSearch()
+	public function getQSSearch()
 	{
-		if (isset($_GET["search"]) && is_string($_GET["search"]))
+		if (isset($_GET[self::$qsSearch]) && is_string($_GET[self::$qsSearch]))
 		{
-			return $_GET["search"];
+			return $_GET[self::$qsSearch];
 		}
 		return null;
 	}
