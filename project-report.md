@@ -29,7 +29,7 @@ Jag har valt att ha min ena stylesheet-fil i början av koden, i ”Head-taggen�
 
 Lite samma sak är det med script, fast tvärtom. Alla script har jag lagt i slutet av koden. När ett script laddas in så kan inget annat laddas in samtidigt. Så om jag lägger mina scripts i mitten utav koden så kommer sidan utvecklas i en hackig takt. När jag lägger dem i slutet så har alla element laddats in och det kommer knappt synas att scripten laddas in därefter.
 
-Cacha filer.
+För att göra så få förfrågningar mot API:erna så har jag valt att cacha data som ska användas ofta. Data som kommer från API:et med tågstationer har jag valt att cacha i en dag. Det kommer ske många sökningar vilket innebär många onödiga förfrågningar mot API:et. Jag skulle också kunnat cacha temperatur och avgångar men har inte riktigt fått det att fungera.
 
 
 ### Offline-first
@@ -43,7 +43,12 @@ I en sådan här applikation så kanske ett offline-läge inte är så viktigt. 
 
 
 ### Risker
-Sensitive Data Exposure (HTTPS)
+Det finns alltid risker med mashup-applikationer. Den största risken för applikationen är om ett API går ner eller ändras. Då kommer inte applikationen fungera som den ska. Förhoppningsvis så fångas fel och visas som felmeddelanden, men detta lär ändå inte användarna gilla. 
 
 
 ### Egna reflektioner
+Jag tycker mitt arbete med projektet har gått bra. Jag hade en klar idé om hur applikationen skulle se ut och resultatet blev som förväntat. Något jag fick problem med under mitt arbete var det här med ”offline-first”. Problemet var att jag hade använt mig av PHP och gjort nästintill hela applikationen i det språket. När jag sedan skulle jobba med ”offline-first”-delen så var det svårt att få in Javascript-funktioner. Allt data ligger på servern och jag kunde inte riktigt hämta datan genom Javascript, vilket gjorde att jag inte kunde lagra den datan på klienten. 
+
+Jag hade gärna velat jobbat mer med ”offline-first” och verkligen bygga en applikation som fungerar ännu bättre utan uppkoppling än vad min applikation gör.
+
+Jag vill väl tyvärr inte jobba vidare med min applikation så mycket. Jag tycker att jag valde fel när jag skulle välja projekt. Hade lite problem med att hitta något vettigt att göra, så det blev något jag inte brann för. 
