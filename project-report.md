@@ -45,6 +45,7 @@ I en sådan här applikation så kanske ett offline-läge inte är så viktigt. 
 ### Risker
 Det finns alltid risker med mashup-applikationer. Den största risken för applikationen är om ett API går ner eller ändras. Då kommer inte applikationen fungera som den ska. Förhoppningsvis så fångas fel och visas som felmeddelanden, men detta lär ändå inte användarna gilla. 
 
+Säkerheten i applikationen är enligt mig bra. Jag har försökt att eliminera alla risker som jag känner till. Problemet här är att jag inte kan alla och det finns säkert personer som kan hitta något kryphål. Jag känner också att säkerheten i PHP inte är lika hög som i kanske ASP.NET MVC. Känslan är att det är lättare att missa i säkerhet.
 
 ### Egna reflektioner
 Jag tycker mitt arbete med projektet har gått bra. Jag hade en klar idé om hur applikationen skulle se ut och resultatet blev som förväntat. Något jag fick problem med under mitt arbete var det här med ”offline-first”. Problemet var att jag hade använt mig av PHP och gjort nästintill hela applikationen i det språket. När jag sedan skulle jobba med ”offline-first”-delen så var det svårt att få in Javascript-funktioner. Allt data ligger på servern och jag kunde inte riktigt hämta datan genom Javascript, vilket gjorde att jag inte kunde lagra den datan på klienten. 
