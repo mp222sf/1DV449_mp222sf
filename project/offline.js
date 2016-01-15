@@ -5,6 +5,7 @@ var allStations = document.getElementsByClassName("stationLink");
 var connParagraph = document.getElementById("info");
 var connInterval;
 
+// Om användaren klickar på sök så kontrolleras om uppkoppling finns.
 searchButton.addEventListener("click", function(){
 
 	if (doesConnectionExist())
@@ -20,6 +21,7 @@ searchButton.addEventListener("click", function(){
 	
 });
 
+// Om användaren klickar på en stationslänk så kontrolleras om uppkoppling finns.
 for (i = 0; i < allStations.length; i++) {
 
     allStations[i].addEventListener("click", function(){
@@ -42,6 +44,7 @@ for (i = 0; i < allStations.length; i++) {
 	});
 }
 
+// Om användaren klickar på enter när sökrutan är markerad så aktiveras sökknappen.
 searchInput.onkeypress = function(e){
 	if (!e) e = window.event;
 	var keyCode = e.keyCode || e.which;
@@ -59,7 +62,7 @@ searchInput.onkeypress = function(e){
 	}
 }
 
-
+// Kontrollerar om uppkoppling finns.
 function doesConnectionExist() {
     var xhr = new XMLHttpRequest();
     var file = "http://maps.google.com/mapfiles/ms/icons/orange-dot.png";
@@ -80,6 +83,7 @@ function doesConnectionExist() {
     }
 }
 
+// Kontrollerar om uppkoppling återfåtts.
 function gotConnectionBack()
 {
 	if (doesConnectionExist())

@@ -12,6 +12,8 @@ class LayoutView {
 		// Empty.
 	}
 
+	// Renderar ut huvudvyn.
+	// Parametrar: Ett GetStation-objekt och ett GetTemperature-objekt.
 	public function render($stationsObj, $weatherObj) {
 
 		echo '<!DOCTYPE html>
@@ -45,24 +47,12 @@ class LayoutView {
 		';
 	}
 
-	private function stationSearch($foundStations)
-	{
-		$retstring = "";
-		if (count($foundStations) > 0)
-		{
-			foreach ($foundStations as $fs) 
-			{
-				$retstring .= '<a class="stationLink" href="#id=' . $fs->getId() . '">' . $fs->getName() . '</a><br>';
-			}
-		}
-		
-		return $retstring;
-	}
-
+	// Returnerar resultat, beroende på vad användaren har gjort.
+	// Parametrar: Ett GetStation-objekt och ett GetTemperature-objekt.
 	private function choosenStation($stationsObj, $weatherObj)
 	{
 		try {
-			
+			// Om sökningen innehåller ogiltliga tecken.
 			if (!$stationsObj->getValidSearch() && $this->getQSSearch() != null)
 			{
 				return '<div id="containerCenter">
@@ -70,6 +60,7 @@ class LayoutView {
 				 			<p>Din sökning innehåller tecken som inte är tillåtna</p>
 				 		</div>';
 			}
+			// Om sökningen är korrekt och innehåller fler än 0 stationer.
 			if ($stationsObj->getFoundStations() != null && count($stationsObj->getFoundStations()) > 0)
 			{
 				return '<div id="containerCenter">
@@ -77,6 +68,7 @@ class LayoutView {
 				 			<p class="stationText">' . $this->stationSearch($stationsObj->getFoundStations()) . '</p>
 				 		</div>';
 			}
+			// Om sökningen gav noll träffar.
 			if (is_array($stationsObj->getFoundStations()) && $this->getQSSearch() != null)
 			{
 				return '<div id="containerCenter">
@@ -84,6 +76,7 @@ class LayoutView {
 					 		Din sökning gav 0 träffar.
 					 	</div>';
 			}
+			// Om användaren klickat på en station.
 			if ($this->getQSId() != null)
 			{
 				if (!is_numeric($this->getQSId()))
@@ -122,6 +115,7 @@ class LayoutView {
 
 			return '';
 		}
+		// Fångar undantag.
 		catch(stationsException $e) {
 			return '<div id="containerCenter">
 			 			<h2>Något gick fel...</h2>
@@ -142,6 +136,22 @@ class LayoutView {
 		}
 	}
 
+	// Returnerar en sträng med aktuella stationer.
+	private function stationSearch($foundStations)
+	{
+		$retstring = "";
+		if (count($foundStations) > 0)
+		{
+			foreach ($foundStations as $fs) 
+			{
+				$retstring .= '<a class="stationLink" href="#id=' . $fs->getId() . '">' . $fs->getName() . '</a><br>';
+			}
+		}
+		
+		return $retstring;
+	}
+
+	// Returnerar en sträng med tågavgångar.
 	private function getTransfers($transfers)
 	{
 		$retString = '<div class="transTrain bold">Tåg</div><div class="transDest bold">Destinationer</div><div class="transDep bold marginCenter">Avgång</div><br>';
@@ -167,6 +177,7 @@ class LayoutView {
 		return $retString;
 	}
 
+	// Returnerar en sträng för temperatur.
 	private function getTempColor($temp)
 	{
 		if ($temp > 0.0)
@@ -176,47 +187,7 @@ class LayoutView {
 		return "colorBlue";
 	}
 
-	// // Aktiverar Google-maps med en markör som har samma kordinater som stationen.
-	// private function googleMaps($statObj)
-	// {
-	// 	$markers = "";
-
-	// 	if ($this->getQSId() != null && is_numeric($this->getQSId()))
-	// 	{
-	// 		$stat = $statObj->getStationById($this->getQSId());
-
-	// 		$markers .= 'var markerPos = new google.maps.Marker({
-	// 			      position: {lat: ' . $stat->getLat() . ', lng: ' . $stat->getLng() . '},
-	// 			      map: map,
-	// 			      animation: google.maps.Animation.DROP,
-	// 			      icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
-	// 			    });
-	// 				';
-	// 	}
-
-	// 	return "<script type='text/javascript'>
-
-	// 			  var map;
-	// 			  function initMap() {
-	// 			    var myLatLng = {lat: 62.440670, lng: 17.367777};
-
-	// 			    map = new google.maps.Map(document.getElementById('map'), {
-	// 			      center: myLatLng,
-	// 			      zoom: 4
-	// 			    });
-
-	// 				" . $markers . "
-	// 			  }
-
-	// 			</script>
-	// 			<script async defer
-	// 			  src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBEVs3ATKsLGIejp2WDgZHGcjOg7C4UuhA&callback=initMap'>
-	// 			</script>";
-	// }
-
-
-
-	// Hämtar Querystring :: "id".
+	// Hämtar Querystring för "id".
 	public function getQSId()
 	{
 		if (isset($_GET[self::$qsID]))

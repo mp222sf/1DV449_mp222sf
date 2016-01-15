@@ -1,5 +1,6 @@
 <?php
 
+// Felhantering av stationer.
 class stationsException extends Exception {
 	public function errorMessage() {
 		//error message
@@ -8,6 +9,7 @@ class stationsException extends Exception {
 	}
 }
 
+// Felhantering av avgångar.
 class transferException extends Exception {
 	public function errorMessage() {
 		//error message
@@ -16,6 +18,7 @@ class transferException extends Exception {
 	}
 }
 
+// Felhantering av väder.
 class weatherException extends Exception {
 	public function errorMessage() {
 		//error message

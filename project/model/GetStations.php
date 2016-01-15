@@ -132,15 +132,17 @@ class GetStations {
 		return $dataArray;
 	}
 
+	// Validerar sökordet som användaren angett.
 	private function validation($searchWord)
 	{
-		if(preg_match("/^[a-zA-Z0-9éÉüÜåÅäÄöÖ.,-\s]+$/", $searchWord)) {
+		if(preg_match("/^[a-zA-Z0-9éÉüÜåÅäÄöÖ\.\,\-\s]+$/", $searchWord)) {
 		    return true;
 		} else {
 		    return false;
 		}
 	}
 
+	// Returnerar resultatet av valideringen.
 	public function getValidSearch()
 	{
 		return $this->validSearch;
@@ -158,7 +160,7 @@ class GetStations {
 		return $this->foundStations;
 	}
 
-
+	// Returnerar JSON.
 	public function getJSON()
 	{
 		return $this->jsonStations;
